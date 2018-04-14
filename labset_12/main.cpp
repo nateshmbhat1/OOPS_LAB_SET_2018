@@ -32,13 +32,13 @@ class SeriesResistancePair: public ResistancePair
         combined_r = r1 + r2 ; 
         return combined_r ; 
     }
-
 };
 
 
 int main(void)
 {
-    ParallelResistancePair R1(1 , 2) , R2(3 , 4) , R3(5 , 6) , R4(7 , 8) ; 
+    ParallelResistancePair R1(1 , 2) , R2(3 , 4)  ; 
+    SeriesResistancePair  R3(5 , 6) , R4(7 , 8) ; 
     cout<<R1.find_total_resistance() <<endl;
     cout<<R2.find_total_resistance() <<endl;
     cout<<R3.find_total_resistance() <<endl;
