@@ -55,17 +55,15 @@ void display(type * arr  , int n )
 int main()
 {
     int arr[] = {10 , 3 , 5 , 2 , 1} ; 
-    float farr[] = { 23.3 , 3.1 , 30.3  , 2.3 , 3} ; 
+    double farr[] = { 23.3 , 3.1 , 30.3  , 2.3 , 3} ; 
     selection_sort(farr, 5) ; 
     selection_sort(arr, 5) ; 
 
     display(farr , 5) ; 
     display(arr , 5) ;
 
-
-
     int arr1[] = {10 , 3 , 5 , 2 , 1} ; 
-    float farr1[] = { 23.3 , 3.1 , 30.3  , 2.3 , 3} ; 
+    double farr1[] = { 23.3 , 3.1 , 30.3  , 2.3 , 3} ; 
 
     insertion_sort(arr1 , 5) ; 
     insertion_sort(farr1 , 5) ; 

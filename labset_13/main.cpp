@@ -24,7 +24,7 @@ class Item
         Item tempobj ; 
         while(file.eof()==false)
         {
-            file.read((char * )&tempobj , sizeof(tempobj)) ;
+            file.read((char * )&tempobj , sizeof(Item)) ; 
             cout<<tempobj.name << " " <<tempobj.code << " " <<tempobj.prize <<endl;;
         }
     }
@@ -41,17 +41,13 @@ class Item
     }
 };
 
+
 Item::Item(string namevar , string codevar, float pr , int num):name(namevar) , code(codevar) , prize(pr) , numberofItems(num){}
 
 
 int main()
 {
     fstream file ; 
-    file.open("file" , ios::app | ios::binary) ;
-    if(!file){
-        cout<<"Error in opening file !" ; exit(2) ; 
-    }
-
     Item obj ;
     int ch ; 
 
@@ -62,9 +58,15 @@ int main()
         switch(ch)
         {
             case 1: 
+
+                file.open("file" , ios::out  | ios::binary) ;
+                if(!file){
+                    cout<<"Error in opening file !" ; exit(2) ; 
+                }
+
                 obj.getData() ; 
                 file.seekg(0 , ios::end) ; 
-                file.write((char *) &obj , sizeof(obj)) ;
+                file.write((char *) &obj , sizeof(obj));
                 file.close() ; 
                 break ; 
 
@@ -75,7 +77,7 @@ int main()
                 break ; 
 
             case 3 :
-                file.open("file" , ios::app | ios::binary) ; 
+                file.open("file" , ios::out | ios::binary) ; 
                 int loc = obj.update() ; 
                 file.seekp( loc , ios::beg) ; 
                 file.write((char *) &obj , sizeof(obj)) ; 
