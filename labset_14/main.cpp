@@ -25,7 +25,8 @@ void insertion_sort(type * arr , int n )
 template<class type> 
 void selection_sort(type * arr , int n )
 {
-    int min  , mini  ;
+    type min ; 
+    int mini  ;
     for(int i =0 ; i<n ; i++)
     {
         min = arr[i]  ;  
@@ -71,9 +72,5 @@ int main()
 
     display(farr , 5) ; 
     display(arr , 5) ;
-
-
-   
-    
 
 }
