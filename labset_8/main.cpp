@@ -4,10 +4,10 @@
 using namespace std; 
 
 
-int main(void)
+int main(int argc, char * argv[])
 {
     string file1 , file2 ; 
-    fstream ifile1("file1" , ios::in ) , ifile2("file2" , ios::in)   , ofile("merge.txt" , ios::out) ; 
+    fstream ifile1(argv[1] , ios::in ) , ifile2(argv[2] , ios::in)   , ofile("merge.txt" , ios::out) ; 
 
     while(ifile1.eof()==false &&  ifile2.eof()==false)
     {
