@@ -1,32 +1,38 @@
 #include<iostream>
 #include<iomanip>
 #include<cstdlib>
+#include<string>
+#include<cstring>
+#include<cstdlib>
+#include<cstdio>
 #include<fstream>
 
 
-using namespace std ; 
+using namespace std ;
 
 class Item
 {
     public : 
-    string name , code ; float prize  ; int  numberofItems; 
-    Item(){name = code = "" ; prize = numberofItems =0 ; }
-    Item(string , string , float , int ) ; 
+    char name[20] , code[20] ; float prize  ; int  numberofItems; 
+    Item(){ prize = numberofItems =0 ; }
+    Item(char * , char  * , float , int ) ; 
     void getData()
     {
         cout<<"Enter name , code , prize , no_items : " ; 
         cin>>name >> code >> prize >> numberofItems ; 
     }
 
-    void Display(fstream & file )
+    void Display(fstream & file  , int no_objects)
     {
         file.seekg(0 , ios::beg) ; 
         Item tempobj ; 
-        while(file.eof()==false)
+        for(int i = 0 ; i<no_objects ; i++)
         {
-            file.read((char * )&tempobj , sizeof(Item)) ; 
+            file.read((char * )&tempobj , sizeof(tempobj)) ; 
             cout<<tempobj.name << " " <<tempobj.code << " " <<tempobj.prize <<endl;;
         }
+        file.seekg(0 , ios::beg) ; 
+        
     }
 
     int update() 
@@ -42,50 +48,53 @@ class Item
 };
 
 
-Item::Item(string namevar , string codevar, float pr , int num):name(namevar) , code(codevar) , prize(pr) , numberofItems(num){}
+Item::Item(char * namevar , char * codevar, float pr , int num):prize(pr) , numberofItems(num){
+    strcpy(name, namevar)  ; 
+    strcpy(code , codevar);
+}
 
 
 int main()
 {
     fstream file ; 
+    file.open("file" ,ios::trunc |  ios::in | ios::app) ; 
+    int no_objects =0  ; 
+
+    int loc ; 
     Item obj ;
     int ch ; 
 
     while(1)
     {
-        cout<<"1.Add object     2.Display    3.Update object  : " ; 
+        cout<<"1.Add object     2.Display    3.Update object : " ; 
         cin>>ch ; 
+
         switch(ch)
         {
             case 1: 
-
-                file.open("file" , ios::out  | ios::binary) ;
-                if(!file){
-                    cout<<"Error in opening file !" ; exit(2) ; 
-                }
-
                 obj.getData() ; 
-                file.seekg(0 , ios::end) ; 
                 file.write((char *) &obj , sizeof(obj));
-                file.close() ; 
+                file.seekp(0 , ios::end) ; 
+                no_objects++ ; 
                 break ; 
 
             case 2:
-                file.open("file" , ios::in | ios::binary) ; 
-                obj.Display(file) ; 
-                file.close() ; 
+                obj.Display(file , no_objects) ; 
                 break ; 
 
             case 3 :
-                file.open("file" , ios::out | ios::binary) ; 
-                int loc = obj.update() ; 
+                ;
+                loc = obj.update() ; 
                 file.seekp( loc , ios::beg) ; 
                 file.write((char *) &obj , sizeof(obj)) ; 
-                
                 break ; 
+
+            case 4:
+                ;
+                file.close() ; 
+                exit(8) ; 
         }
 
         cout<<endl; 
-        system("clear") ;  
     }
 }
