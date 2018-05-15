@@ -1,8 +1,7 @@
 # OOPS LAB SET 2018
 
-### Some of the labset programs of OOPS lab 2018 . 
+###QUESTION BANK
 
-QUESTION BANK
 1. Write a C++ program to create a class to represent entities of type Circle, specified by its attributes
 radius and coordinates of its center. Include appropriate Constructors and display methods. Also write
 a friend function that determines whether two circles intersect one another or they touch each other or

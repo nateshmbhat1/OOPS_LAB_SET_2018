@@ -1,9 +1,7 @@
 #include<iostream>
 #include<cstdlib>
 
-
 using namespace std ; 
-
 
 class RainGuage
 {
@@ -26,7 +24,6 @@ void findAvg(const RainGuage * objs , const int& n)
     {
         sum+=objs[i].cm ; 
     }
-
     cout<<" Average rainfall is " <<sum/n ; 
 }
 
@@ -44,6 +41,7 @@ void RainGuage::fnReadMeasurement()
     cm = random()%21 ; 
 }
 
+
 int main()
 {
     srand(time(NULL)) ; 
@@ -57,5 +55,4 @@ int main()
         arr[i].fnDispReading() ; 
 
     findAvg(arr , n) ; 
-
 }
